@@ -13,7 +13,7 @@ var animalData = {
             'Luanët mund të vrapojnë me shpejtësi deri në 80 km/h',
             'Jeta mesatare e një luani në natyrë është 10-14 vjet'
         ],
-        habitat: 'Luanët jetojnë kryesisht në savanë dhe shkretëtira në Afrikë dhe në një park kombëtar në Indi.',
+        habitat: 'Luanët jetojn kryesisht në savanë dhe shkretëtira në Afrikë dhe në një park kombëtar në Indi.',
         status: 'Luanët janë të listuar si "të rrezikuar" në Listën e Kuqe të IUCN.'
     },
     elephant: {
@@ -180,7 +180,7 @@ var animalData = {
         name: 'Delfini',
         scientific: 'Delphinidae',
         category: 'Ujorë',
-        image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+        image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=800',
         link: 'https://sq.wikipedia.org/wiki/Delfini',
         description: 'Delfini është një kafshë inteligjente dhe miqësore që jetojnë në oqeane dhe dete.',
         facts: [
@@ -217,6 +217,25 @@ function openAnimalModal(animalId) {
         var li = document.createElement('li');
         li.textContent = animal.facts[i];
         factsList.appendChild(li);
+    }
+    
+    // Shto butonin "Mëso Më Shumë"
+    var statusDiv = document.getElementById('modalStatus');
+    var nextSibling = statusDiv.nextElementSibling;
+    var learnMoreBtn = document.getElementById('learnMoreBtn');
+    if (!learnMoreBtn) {
+        learnMoreBtn = document.createElement('a');
+        learnMoreBtn.id = 'learnMoreBtn';
+        learnMoreBtn.className = 'buton butonkryesor';
+        learnMoreBtn.href = animal.link;
+        learnMoreBtn.target = '_blank';
+        learnMoreBtn.textContent = 'Mëso Më Shumë në Wikipedia';
+        learnMoreBtn.style.display = 'inline-block';
+        learnMoreBtn.style.marginTop = '20px';
+        learnMoreBtn.style.textAlign = 'center';
+        statusDiv.parentNode.appendChild(learnMoreBtn);
+    } else {
+        learnMoreBtn.href = animal.link;
     }
     
     // Shfaq dritaren
