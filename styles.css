@@ -1,0 +1,897 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green-dark: #1a5f3f;
+    --green-medium: #2d8659;
+    --green-light: #4a9d73;
+    --green-lighter: #6bb894;
+    --green-lightest: #a8dcc4;
+    --white: #ffffff;
+    --white-off: #f8f9fa;
+    --orange: #ff8c42;
+    --orange-light: #ffa366;
+    --yellow: #ffc947;
+    --yellow-light: #ffd966;
+    --text-dark: #2c3e50;
+    --text-medium: #555;
+    --text-light: #777;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--white);
+}
+
+.permbajtje {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.krye {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-medium) 100%);
+    color: var(--white);
+    padding: var(--spacing-sm) 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.krye .permbajtje {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.navigim ul {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-md);
+}
+
+.navigim a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 5px;
+}
+
+.navigim a:hover,
+.navigim a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--yellow-light);
+}
+
+.menumobile {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menumobile span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menumobile.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menumobile.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menumobile.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.navigim.active {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-medium) 100%);
+    padding: var(--spacing-sm);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.navigim.active ul {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--green-medium) 0%, var(--green-light) 100%);
+    color: var(--white);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.95;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.butonkryesor {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--yellow) 100%);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+}
+
+.butonkryesor:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 140, 66, 0.6);
+}
+
+.butondytesor {
+    background-color: var(--green-light);
+    color: var(--white);
+}
+
+.butondytesor:hover {
+    background-color: var(--green-medium);
+    transform: translateY(-2px);
+}
+
+section {
+    padding: var(--spacing-xl) 0;
+}
+
+.titullseksioni {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--green-dark);
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+}
+
+.titullseksioni::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange), var(--yellow));
+    border-radius: 2px;
+}
+
+.karakteristika {
+    background-color: var(--white-off);
+}
+
+.gridkarakteristika {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.kartakarakteristike {
+    background: var(--white);
+    padding: var(--spacing-md);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kartakarakteristike:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.ikonekarakteristike {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.kartakarakteristike h3 {
+    color: var(--green-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.kartakarakteristike p {
+    color: var(--text-medium);
+}
+
+.gridkafshet {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.kartakafshes {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kartakafshes:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.imazhkafshes {
+    font-size: 5rem;
+    text-align: center;
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, var(--green-lightest) 0%, var(--green-lighter) 100%);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imazhreth {
+    font-size: 8rem;
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--green-lightest) 0%, var(--green-lighter) 100%);
+    border-radius: 15px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infokafshes {
+    padding: var(--spacing-md);
+}
+
+.infokafshes h3 {
+    color: var(--green-dark);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.5rem;
+}
+
+.kategorikafshes {
+    color: var(--green-medium);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.9rem;
+}
+
+.pershkrimkafshes {
+    color: var(--text-medium);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+}
+
+.kafshetpopullore {
+    background-color: var(--white-off);
+}
+
+.kryefaqe {
+    background: linear-gradient(135deg, var(--green-medium) 0%, var(--green-light) 100%);
+    color: var(--white);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.kryefaqe h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.kryefaqe p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.permbajtjereth {
+    padding: var(--spacing-xl) 0;
+}
+
+.seksionreth {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.seksionreth.reverse {
+    direction: rtl;
+}
+
+.seksionreth.reverse > * {
+    direction: ltr;
+}
+
+.tekstreth h2 {
+    color: var(--green-dark);
+    margin-bottom: var(--spacing-sm);
+    font-size: 2rem;
+}
+
+.tekstreth p {
+    color: var(--text-medium);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.8;
+}
+
+.imazhvendmbajtje {
+    font-size: 8rem;
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--green-lightest) 0%, var(--green-lighter) 100%);
+    border-radius: 15px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.listevlera {
+    list-style: none;
+    padding: 0;
+}
+
+.listevlera li {
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    background-color: var(--white-off);
+    border-radius: 8px;
+    border-left: 4px solid var(--orange);
+}
+
+.listevlera strong {
+    color: var(--green-dark);
+}
+
+.statistika {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-medium) 100%);
+    color: var(--white);
+    padding: var(--spacing-xl) 0;
+}
+
+.statistika .titullseksioni {
+    color: var(--white);
+}
+
+.statistika .titullseksioni::after {
+    background: linear-gradient(90deg, var(--yellow), var(--orange));
+}
+
+.gridstatistika {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.kartastatistike {
+    text-align: center;
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.numerstatistike {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--yellow);
+    margin-bottom: var(--spacing-xs);
+}
+
+.etiketestatistike {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Filter Section */
+.filter-section {
+    background-color: var(--white-off);
+    padding: var(--spacing-md) 0;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background-color: var(--white);
+    border: 2px solid var(--green-light);
+    color: var(--green-dark);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--yellow) 100%);
+    border-color: var(--orange);
+    color: var(--white);
+}
+
+.seksionkafshet {
+    padding: var(--spacing-xl) 0;
+}
+
+/* Animal Detail */
+.animal-detail {
+    padding: var(--spacing-xl) 0;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--green-medium);
+    text-decoration: none;
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--green-dark);
+}
+
+.detail-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+.detail-info h1 {
+    color: var(--green-dark);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.animal-scientific {
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: var(--spacing-xs);
+}
+
+.detail-description,
+.detail-facts,
+.detail-habitat,
+.detail-status {
+    margin-bottom: var(--spacing-md);
+}
+
+.detail-description h2,
+.detail-facts h2,
+.detail-habitat h2,
+.detail-status h2 {
+    color: var(--green-dark);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+}
+
+.detail-description p,
+.detail-habitat p,
+.detail-status p {
+    color: var(--text-medium);
+    line-height: 1.8;
+}
+
+.detail-facts ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detail-facts li {
+    padding: var(--spacing-xs) 0;
+    padding-left: var(--spacing-md);
+    position: relative;
+    color: var(--text-medium);
+}
+
+.detail-facts li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green-medium);
+    font-weight: bold;
+}
+
+.detail-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+/* Related Animals */
+.related-animals {
+    background-color: var(--white-off);
+    padding: var(--spacing-xl) 0;
+}
+
+.kontakt {
+    background-color: var(--white-off);
+    padding: var(--spacing-xl) 0;
+}
+
+.permbajtjekontakt {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.infokontakt {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.itemkontakt {
+    background: var(--white);
+    padding: var(--spacing-md);
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.itemkontakt strong {
+    color: var(--green-dark);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.1rem;
+}
+
+.itemkontakt p {
+    color: var(--text-medium);
+    margin: 0;
+}
+
+.fund {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-medium) 100%);
+    color: var(--white);
+    padding: var(--spacing-xl) 0 var(--spacing-md);
+}
+
+.permbajtjefund {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.seksionfund h3,
+.seksionfund h4 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--yellow-light);
+}
+
+.seksionfund p {
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+.seksionfund ul {
+    list-style: none;
+}
+
+.seksionfund ul li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.seksionfund a {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.seksionfund a:hover {
+    opacity: 1;
+    color: var(--yellow-light);
+}
+
+.linqesociale {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.fundposhtem {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .navigim {
+        display: none;
+    }
+    
+    .menumobile {
+        display: flex;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .titullseksioni {
+        font-size: 2rem;
+    }
+    
+    .seksionreth {
+        grid-template-columns: 1fr;
+    }
+    
+    .seksionreth.reverse {
+        direction: ltr;
+    }
+    
+    .gridkafshet {
+        grid-template-columns: 1fr;
+    }
+    
+    .gridkarakteristika {
+        grid-template-columns: 1fr;
+    }
+    
+    .gridstatistika {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .titullseksioni {
+        font-size: 1.8rem;
+    }
+    
+    .gridstatistika {
+        grid-template-columns: 1fr;
+    }
+    
+    .numerstatistike {
+        font-size: 2.5rem;
+    }
+}
+
+.kartakafshes.hidden {
+    display: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow-y: auto;
+}
+
+.permbajtjemodal {
+    background-color: var(--white);
+    margin: 3% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mbyllmodal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 35px;
+    font-weight: bold;
+    color: var(--text-light);
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.mbyllmodal:hover {
+    background-color: var(--orange);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+.trupmodal {
+    padding: var(--spacing-lg);
+}
+
+.imazhmodal {
+    font-size: 6rem;
+    text-align: center;
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, var(--green-lightest) 0%, var(--green-lighter) 100%);
+    border-radius: 15px;
+    margin-bottom: var(--spacing-md);
+}
+
+.trupmodal h2 {
+    color: var(--green-dark);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+    text-align: center;
+}
+
+.shkencormodal {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: var(--spacing-xs);
+}
+
+.kategorimodal {
+    text-align: center;
+    color: var(--green-medium);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+}
+
+.pershkrimmodal,
+.faktemodal,
+.habitatmodal,
+.statusmodal {
+    margin-bottom: var(--spacing-md);
+}
+
+.pershkrimmodal h3,
+.faktemodal h3,
+.habitatmodal h3,
+.statusmodal h3 {
+    color: var(--green-dark);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--green-lightest);
+    padding-bottom: var(--spacing-xs);
+}
+
+.pershkrimmodal p,
+.habitatmodal p,
+.statusmodal p {
+    color: var(--text-medium);
+    line-height: 1.8;
+}
+
+.faktemodal ul {
+    list-style: none;
+    padding: 0;
+}
+
+.faktemodal li {
+    padding: var(--spacing-xs) 0;
+    padding-left: var(--spacing-md);
+    position: relative;
+    color: var(--text-medium);
+    line-height: 1.6;
+}
+
+.faktemodal li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green-medium);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .permbajtjemodal {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    .trupmodal {
+        padding: var(--spacing-md);
+    }
+    
+    .imazhmodal {
+        font-size: 4rem;
+    }
+    
+    .trupmodal h2 {
+        font-size: 1.5rem;
+    }
+}
+
