@@ -125,43 +125,150 @@ body {
 }
 
 .hero {
-    background: linear-gradient(135deg, var(--green-medium) 0%, var(--green-light) 100%);
-    color: var(--white);
-    padding: var(--spacing-xl) 0;
-    text-align: center;
     position: relative;
+    overflow: hidden;
+    height: 80vh;
+    min-height: 500px;
+}
+
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
-.hero::before {
-    content: '';
+.slide {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    z-index: 0;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 0;
+}
+
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(26, 95, 63, 0.7) 0%, rgba(45, 134, 89, 0.6) 100%);
+    z-index: 2;
+    pointer-events: none;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    width: 100%;
+    max-width: 1200px;
     padding: 0 var(--spacing-sm);
+}
+
+.permbajtjehero {
+    position: relative;
+    z-index: 3;
 }
 
 .hero h2 {
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    color: var(--white);
 }
 
 .hero p {
     font-size: 1.3rem;
     margin-bottom: var(--spacing-md);
-    opacity: 0.95;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    color: var(--white);
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.slider-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: var(--white);
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    backdrop-filter: blur(5px);
+}
+
+.slider-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: var(--white);
+    transform: scale(1.1);
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 3;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.dot.active,
+.dot:hover {
+    background: var(--white);
+    transform: scale(1.2);
 }
 
 /* Buttons */
@@ -180,26 +287,75 @@ body {
 .butonkryesor {
     background: linear-gradient(135deg, var(--orange) 0%, var(--yellow) 100%);
     color: var(--white);
-    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+    box-shadow: 0 8px 20px rgba(255, 140, 66, 0.45);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.butonkryesor::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.5), transparent);
+    transform: skewX(-25deg);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.butonkryesor:hover::after {
+    left: 120%;
+    opacity: 1;
 }
 
 .butonkryesor:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 140, 66, 0.6);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(255, 140, 66, 0.6);
 }
 
 .butondytesor {
-    background-color: var(--green-light);
-    color: var(--white);
+    background: transparent;
+    color: var(--green-medium);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 999px;
+    padding: 0.6rem 1.6rem;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    backdrop-filter: blur(4px);
+}
+
+.butondytesor::after {
+    content: '→';
+    font-size: 0.9rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.8;
 }
 
 .butondytesor:hover {
-    background-color: var(--green-medium);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--yellow-light);
+    color: var(--white);
     transform: translateY(-2px);
+}
+
+.butondytesor:hover::after {
+    transform: translateX(3px);
+    opacity: 1;
 }
 
 section {
     padding: var(--spacing-xl) 0;
+}
+
+.admin-form-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--white-off);
 }
 
 .titullseksioni {
@@ -685,12 +841,30 @@ section {
         display: flex;
     }
     
+    .hero {
+        height: 60vh;
+        min-height: 400px;
+    }
+    
     .hero h2 {
         font-size: 2rem;
     }
     
     .hero p {
         font-size: 1.1rem;
+    }
+    
+    .slider-btn {
+        font-size: 1.5rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .slider-controls {
+        padding: 0 1rem;
+    }
+    
+    .slider-dots {
+        bottom: 1rem;
     }
     
     .titullseksioni {
@@ -719,12 +893,36 @@ section {
 }
 
 @media (max-width: 480px) {
+    .hero {
+        height: 50vh;
+        min-height: 350px;
+    }
+    
     .hero h2 {
         font-size: 1.5rem;
     }
     
     .hero p {
         font-size: 1rem;
+    }
+    
+    .slider-btn {
+        font-size: 1.2rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .slider-controls {
+        padding: 0 0.5rem;
+    }
+    
+    .slider-dots {
+        bottom: 0.5rem;
+        gap: 0.5rem;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
     }
     
     .titullseksioni {
@@ -917,3 +1115,29 @@ section {
     }
 }
 
+/* Stilizime për input-et e formave të login dhe signup */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: 2px solid var(--green-medium) !important;
+    outline-offset: 2px !important;
+    border-color: var(--green-medium) !important;
+}
+
+form {
+    pointer-events: auto !important;
+}
+
+form input {
+    pointer-events: auto !important;
+}
